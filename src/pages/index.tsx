@@ -57,11 +57,12 @@ const useProofead = () => {
 
 const Page = () => {
   const router = useRouter();
-  const defaultQuery = router.query['query']?.[0];
+  const defaultQuery = Array.isArray(router.query['q']) ? undefined : router.query['q'];
   const { state, text, result, dispatch } = useProofead();
   const [selectIndex, setSelectIndex] = useState<number>();
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     dispatch(e.currentTarget.text.value);
+    router.push(`/?q=${encodeURI(e.currentTarget.text.value)}`);
     e.preventDefault();
   };
   const words = useMemo(() => {
