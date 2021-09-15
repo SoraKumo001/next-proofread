@@ -1,4 +1,5 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useRouter } from 'next/dist/client/router';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import styled from './index.module.scss';
 
 interface SuggestionType {
@@ -55,6 +56,8 @@ const useProofead = () => {
 };
 
 const Page = () => {
+  const router = useRouter();
+  const defaultQuery = router.query['query']?.[0];
   const { state, text, result, dispatch } = useProofead();
   const [selectIndex, setSelectIndex] = useState<number>();
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -75,6 +78,9 @@ const Page = () => {
     }
     return undefined;
   }, [result, text]);
+  useEffect(() => {
+    if (defaultQuery) dispatch(defaultQuery);
+  }, [defaultQuery, dispatch]);
   return (
     <div className={styled.root}>
       <form onSubmit={handleSubmit}>
@@ -82,7 +88,7 @@ const Page = () => {
           <button>校正</button>
           <span className={styled.state}>{state}</span>
         </div>
-        <textarea name="text" cols={80} rows={10} defaultValue={text} />
+        <textarea key={defaultQuery} name="text" cols={80} rows={10} defaultValue={defaultQuery} />
       </form>
       {words?.length && (
         <div className={styled.srcText}>
