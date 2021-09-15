@@ -1,0 +1,71 @@
+.root {
+    margin: 16px;
+    .buttonLine {
+        .state {
+            display: inline-block;
+            border: gray 2px solid;
+            border-radius: 1em;
+            padding: 0.2em 0.3em;
+            margin-left: 1em;
+        }
+    }
+    textarea {
+        margin-top: 1em;
+        padding: 0.5em;
+        line-height: 1.5em;
+        border-radius: 4px;
+        outline: none;
+        border: gray 1px solid;
+        &:focus {
+            border-color: blue;
+        }
+    }
+    .srcText {
+        border-radius: 4px;
+        display: inline-block;
+        padding: 0.5em;
+        border: 1px solid;
+        white-space: pre;
+        line-height: 2em;
+        .target {
+            color: red;
+            text-decoration: underline;
+            cursor: pointer;
+            rt > span {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 100%;
+                padding: 0.2em;
+                width: 1em;
+                height: 1em;
+                border: solid 1px;
+                color: black;
+            }
+        }
+    }
+    .info {
+        display: inline-block;
+        padding: 0.5em;
+        > * {
+            border-bottom: 2px solid transparent;
+            line-height: 2em;
+        }
+        > :nth-child(n + 2) {
+            margin-top: 0.3em;
+        }
+        .index {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 100%;
+            border: 1px solid;
+            margin-right: 1em;
+        }
+        .select {
+            border-bottom-color: black;
+        }
+    }
+}
